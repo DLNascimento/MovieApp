@@ -23,13 +23,11 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_popular_movie"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        tools:listitem="@layout/popular_movie_item"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_movile_popular" />
+        app:layout_constraintEnd_toEndOf="@+id/tv_movile_popular"
+        app:layout_constraintStart_toStartOf="@+id/tv_movile_popular"
+        app:layout_constraintTop_toBottomOf="@+id/tv_movile_popular"
+        tools:listitem="@layout/popular_movie_item" />
 </androidx.constraintlayout.widget.ConstraintLayout>

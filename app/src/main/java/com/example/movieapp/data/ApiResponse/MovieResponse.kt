@@ -1,4 +1,4 @@
-package com.example.movieapp.data.dto
+package com.example.movieapp.data.ApiResponse
 
 data class MovieResponse(
     val page: Int,

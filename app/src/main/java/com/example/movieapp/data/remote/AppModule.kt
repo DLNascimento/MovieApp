@@ -1,6 +1,8 @@
 package com.example.movieapp.data.remote
 
+import com.example.movieapp.repository.MovieRepository
 import com.example.movieapp.utils.Constants
+import com.example.movieapp.viewmodel.GridMoviesViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,5 +26,17 @@ object AppModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ServiceApi::class.java)
+
+
+
+
+    @Provides
+    @Singleton
+    fun providesPokemonListViewModel(repository: MovieRepository): GridMoviesViewModel{
+        return GridMoviesViewModel(repository)
+    }
+
+
+
 }
 
