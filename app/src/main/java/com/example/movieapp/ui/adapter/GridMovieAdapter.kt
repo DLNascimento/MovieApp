@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.movieapp.data.ApiResponse.MovieResponse
+import com.example.movieapp.data.ApiResponse.Result
 import com.example.movieapp.databinding.PopularMovieItemBinding
-import com.example.movieapp.model.MovieModel
+import com.example.movieapp.utils.Constants
 
 class GridMovieAdapter : RecyclerView.Adapter<GridMovieAdapter.GridMovieViewHolder>() {
 
@@ -29,7 +31,7 @@ class GridMovieAdapter : RecyclerView.Adapter<GridMovieAdapter.GridMovieViewHold
     override fun onBindViewHolder(holder: GridMovieViewHolder, position: Int) {
         val movie = movies[position]
         holder.binding.apply {
-            imgPopularMovie.load(movie.poster_path){
+            imgPopularMovie.load("${Constants.BASE_URL_IMAGEM}${movie.poster_path}"){
                 crossfade(true)
             }
         }
@@ -39,17 +41,15 @@ class GridMovieAdapter : RecyclerView.Adapter<GridMovieAdapter.GridMovieViewHold
     inner class GridMovieViewHolder(val binding: PopularMovieItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    private val differCallBack = object : DiffUtil.ItemCallback<MovieModel>() {
-        override fun areItemsTheSame(oldItem: MovieModel, newItem: MovieModel): Boolean {
-            return oldItem.hashCode() == newItem.hashCode()
+    private val differCallBack = object : DiffUtil.ItemCallback<Result>() {
+        override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
+            return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: MovieModel, newItem: MovieModel): Boolean {
-            return oldItem.id == newItem.id && oldItem.title == newItem.title &&
-                    oldItem.description == newItem.description &&
-                    oldItem.release_date == newItem.release_date &&
-                    oldItem.poster_path == newItem.poster_path
+        override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean {
+            return oldItem == newItem
         }
+
 
     }
 
@@ -57,7 +57,8 @@ class GridMovieAdapter : RecyclerView.Adapter<GridMovieAdapter.GridMovieViewHold
 
     private val differ = AsyncListDiffer(this, differCallBack)
 
-    var movies: List<MovieModel>
+
+    var movies: List<Result>
         get() = differ.currentList
         set(value) = differ.submitList(value)
 }
