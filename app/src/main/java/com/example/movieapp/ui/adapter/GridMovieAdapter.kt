@@ -31,6 +31,11 @@ class GridMovieAdapter : RecyclerView.Adapter<GridMovieAdapter.GridMovieViewHold
     override fun onBindViewHolder(holder: GridMovieViewHolder, position: Int) {
         val movie = movies[position]
         holder.binding.apply {
+
+
+            txtMovieTitle.text = movie.title
+            txtMovieDate.text = movie.release_date
+
             imgPopularMovie.load("${Constants.BASE_URL_IMAGEM}${movie.poster_path}"){
                 crossfade(true)
             }

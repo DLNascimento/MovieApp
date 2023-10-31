@@ -8,18 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.movieapp.databinding.FragmentGridMoviesBinding
 import com.example.movieapp.ui.adapter.GridMovieAdapter
 import com.example.movieapp.utils.ResourceState
+import com.example.movieapp.utils.hide
+import com.example.movieapp.utils.show
 import com.example.movieapp.viewmodel.GridMoviesViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class GridMovies : Fragment() {
@@ -48,7 +44,9 @@ class GridMovies : Fragment() {
     private fun setupRecyclerView() = with(binding) {
         rvPopularMovie.apply {
             adapter = gridMovieAdapter
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            layoutManager = GridLayoutManager(requireContext(),
+                3, GridLayoutManager.VERTICAL,
+                false)
         }
     }
 
@@ -57,17 +55,18 @@ class GridMovies : Fragment() {
             when (response) {
                 is ResourceState.Success -> {
                     response.data.let { newResponse ->
-                        Log.e("SUCESSO", "CARREGOU!")
+                        binding.pgrPopularMovie.hide()
                         gridMovieAdapter.movies = newResponse!!.results.toList()
                     }
                 }
 
                 is ResourceState.Error -> {
+                    binding.pgrPopularMovie.hide()
                     response.message
                 }
 
                 is ResourceState.Load -> {
-                    Toast.makeText(requireContext(), "CARREGANDO", Toast.LENGTH_SHORT).show()
+                    binding.pgrPopularMovie.show()
                 }
 
                 else -> {}

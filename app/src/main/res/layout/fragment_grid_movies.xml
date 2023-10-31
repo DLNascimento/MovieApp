@@ -5,29 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.GridMovies"
-    android:background="@color/grey_dark"
+    android:background="@color/white"
     >
 
 
-    <TextView
-        android:id="@+id/tv_movile_popular"
-        style="@style/TextAppearance.Material3.HeadlineMedium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:textColor="@color/white"
-        android:text="@string/popular_movies"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_popular_movie"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/tv_movile_popular"
-        app:layout_constraintStart_toStartOf="@+id/tv_movile_popular"
-        app:layout_constraintTop_toBottomOf="@+id/tv_movile_popular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
         tools:listitem="@layout/popular_movie_item" />
+    
+    
+    
+    <ProgressBar
+        android:id="@+id/pgr_popularMovie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:indeterminateTint="@color/red_loading"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
