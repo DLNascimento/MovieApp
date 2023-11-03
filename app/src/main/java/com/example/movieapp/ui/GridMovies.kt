@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.movieapp.databinding.FragmentGridMoviesBinding
 import com.example.movieapp.ui.adapter.GridMovieAdapter
@@ -16,6 +17,8 @@ import com.example.movieapp.utils.hide
 import com.example.movieapp.utils.show
 import com.example.movieapp.viewmodel.GridMoviesViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class GridMovies : Fragment() {
@@ -51,26 +54,12 @@ class GridMovies : Fragment() {
     }
 
     private fun collectObservers() {
-        viewModel.listaMoviesPopular.observe(requireActivity()){response ->
-            when (response) {
-                is ResourceState.Success -> {
-                    response.data.let { newResponse ->
-                        binding.pgrPopularMovie.hide()
-                        gridMovieAdapter.movies = newResponse!!.results.toList()
-                    }
-                }
 
-                is ResourceState.Error -> {
-                    binding.pgrPopularMovie.hide()
-                    response.message
-                }
-
-                is ResourceState.Load -> {
-                    binding.pgrPopularMovie.show()
-                }
-
-                else -> {}
+        lifecycleScope.launch {
+            viewModel.movieList.collect{
+                gridMovieAdapter.submitData(it)
             }
         }
+
     }
 }
