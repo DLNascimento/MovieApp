@@ -54,7 +54,6 @@ object AppModule {
             .create(ServiceApi::class.java)
     }
 
-
 }
 
 

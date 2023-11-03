@@ -67,7 +67,7 @@ class GridMovies : Fragment() {
 
     private fun navigate(){
         gridMovieAdapter.setOnItemClickListener {
-            val action = GridMoviesDirections.actionGridMoviesToMovieDetails()
+            val action = GridMoviesDirections.actionGridMoviesToMovieDetails(it.id)
             findNavController().navigate(action)
         }
     }

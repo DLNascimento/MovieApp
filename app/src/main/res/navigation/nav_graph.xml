@@ -23,5 +23,8 @@
             android:id="@+id/action_movieDetails_to_gridMovies"
             app:destination="@id/gridMovies"
             app:popUpTo="@id/movieDetails" />
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
     </fragment>
 </navigation>
