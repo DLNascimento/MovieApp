@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.movieapp.databinding.FragmentGridMoviesBinding
 import com.example.movieapp.ui.adapter.GridMovieAdapter
@@ -42,6 +43,7 @@ class GridMovies : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         collectObservers()
         setupRecyclerView()
+        navigate()
     }
 
     private fun setupRecyclerView() = with(binding) {
@@ -61,5 +63,12 @@ class GridMovies : Fragment() {
             }
         }
 
+    }
+
+    private fun navigate(){
+        gridMovieAdapter.setOnItemClickListener {
+            val action = GridMoviesDirections.actionGridMoviesToMovieDetails()
+            findNavController().navigate(action)
+        }
     }
 }

@@ -9,5 +9,19 @@
         android:id="@+id/gridMovies"
         android:name="com.example.movieapp.ui.GridMovies"
         android:label="fragment_grid_movies"
-        tools:layout="@layout/fragment_grid_movies" />
+        tools:layout="@layout/fragment_grid_movies" >
+        <action
+            android:id="@+id/action_gridMovies_to_movieDetails"
+            app:destination="@id/movieDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetails"
+        android:name="com.example.movieapp.ui.MovieDetails"
+        android:label="fragment_movie_details"
+        tools:layout="@layout/fragment_movie_details" >
+        <action
+            android:id="@+id/action_movieDetails_to_gridMovies"
+            app:destination="@id/gridMovies"
+            app:popUpTo="@id/movieDetails" />
+    </fragment>
 </navigation>

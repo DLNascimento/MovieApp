@@ -39,6 +39,22 @@ class GridMovieAdapter : PagingDataAdapter<Result,GridMovieAdapter.GridMovieView
                 crossfade(true)
             }
         }
+
+        holder.binding.root.setOnClickListener {
+            onItemClickListener.let {
+                if (currentItem != null) {
+                    if (it != null) {
+                        it(currentItem)
+                    }
+                }
+            }
+        }
+    }
+
+    private var onItemClickListener: ((Result) -> Unit)? = null
+
+    fun setOnItemClickListener(listener: (Result) -> Unit) {
+        onItemClickListener = listener
     }
 
     companion object{
