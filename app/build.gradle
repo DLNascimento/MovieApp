@@ -54,15 +54,17 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
 
+    //INTERCEPTOR
+    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
+
     //VIEWMODEL
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
 
     //COROUTINES
-
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
 
-    //GLIDE
-    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    //PAGING 3
+    implementation "androidx.paging:paging-runtime:3.2.1"
 
     //Koil Images
     implementation "io.coil-kt:coil:2.4.0"
