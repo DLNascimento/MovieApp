@@ -8,5 +8,5 @@ import retrofit2.http.Query
 interface ServiceApi {
 
     @GET("movie/popular")
-    suspend fun getPopularMovies(@Query("api_key")apiKey: String): Response<MovieResponse>
+    suspend fun getPopularMovies(@Query("page")page: Int): Response<MovieResponse>
 }
