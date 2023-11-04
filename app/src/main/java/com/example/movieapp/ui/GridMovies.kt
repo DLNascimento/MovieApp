@@ -9,14 +9,18 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentGridMoviesBinding
 import com.example.movieapp.ui.adapter.GridMovieAdapter
 import com.example.movieapp.utils.ResourceState
 import com.example.movieapp.utils.hide
 import com.example.movieapp.utils.show
 import com.example.movieapp.viewmodel.GridMoviesViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -49,23 +53,25 @@ class GridMovies : Fragment() {
     private fun setupRecyclerView() = with(binding) {
         rvPopularMovie.apply {
             adapter = gridMovieAdapter
-            layoutManager = GridLayoutManager(requireContext(),
+            layoutManager = GridLayoutManager(
+                requireContext(),
                 3, GridLayoutManager.VERTICAL,
-                false)
+                false
+            )
         }
     }
 
     private fun collectObservers() {
 
         lifecycleScope.launch {
-            viewModel.movieList.collect{
+            viewModel.movieList.collect {
                 gridMovieAdapter.submitData(it)
             }
         }
 
     }
 
-    private fun navigate(){
+    private fun navigate() {
         gridMovieAdapter.setOnItemClickListener {
             val action = GridMoviesDirections.actionGridMoviesToMovieDetails(it.id)
             findNavController().navigate(action)
