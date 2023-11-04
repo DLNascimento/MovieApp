@@ -76,10 +76,4 @@ class GridMovieAdapter : PagingDataAdapter<Result,GridMovieAdapter.GridMovieView
         RecyclerView.ViewHolder(binding.root)
 
 
-
-
-
-    private val differ = AsyncListDiffer(this, differCallBack)
-
-
 }
