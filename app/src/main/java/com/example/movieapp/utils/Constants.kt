@@ -7,4 +7,7 @@ object Constants {
 
     const val BASE_URL_IMAGEM = "https://image.tmdb.org/t/p/w500"
 
+    const val MOVIES_TABLE = "movies_table"
+    const val MOVIES_DATABASE = "movies_database"
+
 }
