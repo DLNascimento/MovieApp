@@ -62,7 +62,7 @@ class MovieDetails : Fragment() {
                 movieTagline.text = response.tagline
                 movieReleaseDate.text = response.releaseDate
                 movieRating.text = response.voteAverage.toString()
-                movieRuntime.text = response.runtime.toString()
+                movieRuntime.text = response.runtime.toString() + " minutes"
                 movieOverview.text = response.overview
 
                 ImgFav.setOnClickListener {
@@ -84,18 +84,18 @@ class MovieDetails : Fragment() {
 
             lifecycleScope.launch {
                 if (viewModel.existMovie(movieId)) {
-                    ImgFav.setColorFilter(ContextCompat.getColor(requireContext(), R.color.yellow_star))
+                    ImgFav.setColorFilter(ContextCompat.getColor(requireContext(), R.color.scarlet))
                 } else {
-                    ImgFav.setColorFilter(ContextCompat.getColor(requireContext(), R.color.grey))
+                    ImgFav.setColorFilter(ContextCompat.getColor(requireContext(), R.color.philippineSilver))
                 }
             }
 
             viewModel.isFavorite.observe(viewLifecycleOwner) {
                 if (it) {
-                    ImgFav.setColorFilter(ContextCompat.getColor(requireContext(), R.color.yellow_star))
+                    ImgFav.setColorFilter(ContextCompat.getColor(requireContext(), R.color.scarlet))
 
                 } else {
-                    ImgFav.setColorFilter(ContextCompat.getColor(requireContext(), R.color.grey))
+                    ImgFav.setColorFilter(ContextCompat.getColor(requireContext(), R.color.philippineSilver))
                 }
             }
         }

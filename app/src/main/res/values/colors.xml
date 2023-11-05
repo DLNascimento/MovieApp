@@ -6,4 +6,6 @@
     <color name="grey_dark">#2E2E2E</color>
     <color name="red_loading">#ED1D24</color>
     <color name="yellow_star">#FFC107</color>
+    <color name="philippineSilver">#B3B3B3</color>
+    <color name="scarlet">#f81633</color>
 </resources>

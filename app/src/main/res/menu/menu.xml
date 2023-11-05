@@ -11,7 +11,7 @@
 
     <item
         android:title="Favorites"
-        android:icon="@drawable/ic_star_favorite"
+        android:icon="@drawable/ic_favorite_empty"
         android:id="@+id/favoritesFragment"
         app:showAsAction="collapseActionView"
         />
