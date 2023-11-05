@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:title="Home"
         android:icon="@drawable/ic_home"
         android:id="@+id/gridMovies"
-        />
+        app:showAsAction="collapseActionView"
+         />
 
     <item
         android:title="Favorites"
         android:icon="@drawable/ic_star_favorite"
-        android:id="@+id/favoritesFragment"/>
+        android:id="@+id/favoritesFragment"
+        app:showAsAction="collapseActionView"
+        />
 
 </menu>

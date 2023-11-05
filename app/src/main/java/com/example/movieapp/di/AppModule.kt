@@ -1,10 +1,9 @@
-package com.example.movieapp.data.remote
+package com.example.movieapp.di
 
-import com.example.movieapp.repository.MovieRepository
+import com.example.movieapp.data.remote.ServiceApi
 import com.example.movieapp.utils.Constants
 import com.example.movieapp.utils.Constants.API_KEY
 import com.example.movieapp.utils.Constants.BASE_URL
-import com.example.movieapp.viewmodel.GridMoviesViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

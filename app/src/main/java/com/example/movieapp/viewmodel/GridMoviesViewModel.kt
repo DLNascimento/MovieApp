@@ -12,18 +12,24 @@ import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.example.movieapp.data.ApiResponse.MovieDetailResponse
 import com.example.movieapp.data.ApiResponse.MovieResponse
+import com.example.movieapp.data.local.MoviesEntity
 import com.example.movieapp.paging.MoviesPagingSource
+import com.example.movieapp.repository.DatabaseRepository
 import com.example.movieapp.repository.MovieRepository
 import com.example.movieapp.utils.Constants
 import com.example.movieapp.utils.ResourceState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Response
 import javax.inject.Inject
 
 
 @HiltViewModel
-class GridMoviesViewModel @Inject constructor(private val repository: MovieRepository) : ViewModel() {
+class GridMoviesViewModel @Inject constructor(
+    private val repository: MovieRepository,
+    private val databaseRepository: DatabaseRepository)
+    : ViewModel() {
 
 
     val loading = MutableLiveData<Boolean>()
@@ -42,4 +48,23 @@ class GridMoviesViewModel @Inject constructor(private val repository: MovieRepos
         }
         loading.postValue(false)
     }
+
+
+    val isFavorite = MutableLiveData<Boolean>()
+    suspend fun existMovie(id:Int)= withContext(viewModelScope.coroutineContext){
+        databaseRepository.existMovie(id)
+    }
+
+    fun favoriteMovie(id:Int, entity: MoviesEntity)=viewModelScope.launch {
+        val exists= databaseRepository.existMovie(id)
+        if (exists){
+            isFavorite.postValue(false)
+            databaseRepository.deleteMovie(entity)
+        }else{
+            isFavorite.postValue(true)
+            databaseRepository.insertMovie(entity)
+        }
+    }
+
+
 }

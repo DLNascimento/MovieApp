@@ -5,13 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
+import com.example.movieapp.R
+import com.example.movieapp.data.local.MoviesEntity
 import com.example.movieapp.databinding.FragmentMovieDetailsBinding
 import com.example.movieapp.utils.Constants
 import com.example.movieapp.viewmodel.GridMoviesViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MovieDetails : Fragment() {
@@ -20,6 +28,9 @@ class MovieDetails : Fragment() {
     private var movieId = 0
     private val args: MovieDetailsArgs by navArgs()
     private val viewModel: GridMoviesViewModel by viewModels()
+
+    @Inject
+    lateinit var entity: MoviesEntity
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,6 +64,14 @@ class MovieDetails : Fragment() {
                 movieRating.text = response.voteAverage.toString()
                 movieRuntime.text = response.runtime.toString()
                 movieOverview.text = response.overview
+
+                ImgFav.setOnClickListener {
+                    entity.id = movieId
+                    entity.poster_path = response.posterPath
+                    entity.title = response.title
+                    entity.release_date = response.releaseDate
+                    viewModel.favoriteMovie(movieId, entity)
+                }
             }
 
             viewModel.loading.observe(viewLifecycleOwner) {
@@ -60,6 +79,23 @@ class MovieDetails : Fragment() {
                     prgBarMovies.visibility = View.VISIBLE
                 } else {
                     prgBarMovies.visibility = View.INVISIBLE
+                }
+            }
+
+            lifecycleScope.launch {
+                if (viewModel.existMovie(movieId)) {
+                    ImgFav.setColorFilter(ContextCompat.getColor(requireContext(), R.color.yellow_star))
+                } else {
+                    ImgFav.setColorFilter(ContextCompat.getColor(requireContext(), R.color.grey))
+                }
+            }
+
+            viewModel.isFavorite.observe(viewLifecycleOwner) {
+                if (it) {
+                    ImgFav.setColorFilter(ContextCompat.getColor(requireContext(), R.color.yellow_star))
+
+                } else {
+                    ImgFav.setColorFilter(ContextCompat.getColor(requireContext(), R.color.grey))
                 }
             }
         }
