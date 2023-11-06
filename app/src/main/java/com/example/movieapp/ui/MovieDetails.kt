@@ -47,6 +47,8 @@ class MovieDetails : Fragment() {
         if (movieId > 0){
             viewModel.loadDetailMovie(movieId)
         }
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

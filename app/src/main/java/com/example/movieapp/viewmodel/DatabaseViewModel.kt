@@ -13,12 +13,15 @@ import javax.inject.Inject
 class DatabaseViewModel @Inject constructor(private val repository: DatabaseRepository): ViewModel() {
 
     val favoriteMovieList = MutableLiveData<MutableList<MoviesEntity>>()
-
+    val emptyList = MutableLiveData<Boolean>()
 
     fun loadFavoriteMovieList() = viewModelScope.launch {
         val list = repository.getAllFavoriteList()
         if (list.isNotEmpty()) {
             favoriteMovieList.postValue(list)
+            emptyList.postValue(false)
+        }else{
+            emptyList.postValue(true)
         }
     }
 

@@ -13,6 +13,7 @@ import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentFavoritesBinding
 import com.example.movieapp.ui.adapter.FavoriteMoviesAdapter
 import com.example.movieapp.utils.initRecycler
+import com.example.movieapp.utils.showInvisible
 import com.example.movieapp.viewmodel.DatabaseViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -49,6 +50,17 @@ class FavoritesFragment : Fragment() {
             favoriteMoviesAdapter.setonItemClickListener {
                 val direction = FavoritesFragmentDirections.actionFavoritesFragmentToMovieDetails(it.id)
                 findNavController().navigate(direction)
+            }
+
+            viewModel.emptyList.observe(viewLifecycleOwner){
+                if(it){
+                    emptyItemsLay.showInvisible(true)
+                    favoriteRecycler.showInvisible(false)
+                }else{
+                    emptyItemsLay.showInvisible(false)
+                    favoriteRecycler.showInvisible(true)
+                }
+
             }
         }
     }
