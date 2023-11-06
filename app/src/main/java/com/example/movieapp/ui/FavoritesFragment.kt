@@ -50,16 +50,6 @@ class FavoritesFragment : Fragment() {
                 val direction = FavoritesFragmentDirections.actionFavoritesFragmentToMovieDetails(it.id)
                 findNavController().navigate(direction)
             }
-
-          /*  viewModel.emptyList.observe(viewLifecycleOwner){
-                if (it) {
-                    emptyItemsLay.showInvisible(true)
-                    favoriteRecycler.showInvisible(false)
-                } else {
-                    emptyItemsLay.showInvisible(false)
-                    favoriteRecycler.showInvisible(true)
-                }
-            }*/
         }
     }
 
