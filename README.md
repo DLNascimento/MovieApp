@@ -29,9 +29,7 @@ e algumas outras bibliotecas mais utilizadas como Dagger Hilt para injeção de 
 sinopse entre outros e também encontrará um botão para favoritar ou desfavoritar o filme selecionado, uma vez favoritado basta ir até o fragmento de favoritos(já mencionado anteriormente) para encontrar o seu filme lá, caso não possua nenhum filme favoritado e vá até
 o fragmento de favoritos, vai encontrar um layout mostrando que nenhum item foi encontrado.
 
-
-
-![Movie-App](https://github.com/DLNascimento/MovieApp/assets/101856083/c868cea2-2ddb-4f9c-a77e-cf6ae329d173)
+![Movie-App](https://github.com/DLNascimento/MovieApp/assets/101856083/54df83e5-fe2d-4e17-afa1-42f8fcb55b33)
 
 
 
