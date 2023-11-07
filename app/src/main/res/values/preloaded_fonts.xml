@@ -2,9 +2,5 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/alegreya_sc_bold</item>
-        <item>@font/arbutus</item>
-        <item>@font/arima_madurai_bold</item>
-        <item>@font/calligraffitti</item>
-        <item>@font/chango</item>
     </array>
 </resources>
