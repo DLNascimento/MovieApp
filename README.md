@@ -18,7 +18,7 @@ O Movie-App é um aplicativo desenvolvido e criado com o objetivo de por em prá
 
 
 
-https://github.com/DLNascimento/MovieApp/assets/101856083/a5f31cc9-481a-475c-b418-00670f57175c
+![Movie-App](https://github.com/DLNascimento/MovieApp/assets/101856083/c868cea2-2ddb-4f9c-a77e-cf6ae329d173)
 
 
 
